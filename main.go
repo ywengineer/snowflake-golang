@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/ywengineer/snowflake-golang/snowflake"
-	"github.com/ywengineer/snowflake-golang/snowflake/v2"
+	snowflake2 "github.com/ywengineer/snowflake-golang/v2/snowflake"
 	"net/http"
 	"strconv"
 )
 
 var idWorkerMap = make(map[int]*snowflake.Node)
-var workerMap = make(map[string]*v2.Worker)
+var workerMap = make(map[string]*snowflake2.Worker)
 
 func main() {
 	r := gin.Default()
@@ -58,7 +58,7 @@ func main() {
 				c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 			}
 		} else {
-			iw, err := v2.NewWorker(uint64(center), uint64(id))
+			iw, err := snowflake2.NewWorker(uint64(center), uint64(id))
 			if err == nil {
 				workerMap[workerKey] = iw
 				if nid, err := value.NextId(); err == nil {

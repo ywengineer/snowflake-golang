@@ -1,11 +1,11 @@
-package snowflake
+package v2
 
 import "sync"
 
 /**
- * 起始的时间戳
+ * 起始的时间戳. 2019/9/12 13:4:36
  */
-const START_STAMP uint64 = 1566554916249
+const START_STAMP uint64 = 1568264676567
 
 /**
  * 每一部分占用的位数

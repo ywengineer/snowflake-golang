@@ -27,7 +27,7 @@ func NewWorker(dataCenterId, machineId uint64) (*Worker, error) {
 		dataCenterId: dataCenterId,
 		machineId:    machineId,
 		sequence:     0,
-		lastStamp:    -1,
+		lastStamp:    0,
 	}, nil
 }
 

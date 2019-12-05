@@ -2,6 +2,8 @@ package pro
 
 import (
 	"errors"
+	"fmt"
+	"github.com/ywengineer/g-util/sql"
 	"sync"
 	"time"
 )
@@ -12,6 +14,10 @@ type Worker struct {
 	sequence     uint64 //  序列号
 	lastStamp    uint64 // 上一次时间戳
 	lock         sync.Mutex
+}
+
+func (w *Worker) String() string {
+	return fmt.Sprintf("center:%d,machine:%d,seq:%d,last:%s", w.dataCenterId, w.machineId, w.sequence, time.Unix(int64(w.lastStamp/1000), 0).Format(sql.TimeFormat))
 }
 
 func NewWorker(dataCenterId, machineId uint64) (*Worker, error) {

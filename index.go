@@ -3,14 +3,14 @@ package snowflake_golang
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/ywengineer/snowflake-golang/pro"
 	"github.com/ywengineer/snowflake-golang/snowflake"
-	"github.com/ywengineer/snowflake-golang/v2"
 	"net/http"
 	"strconv"
 )
 
 var idWorkerMap = make(map[int]*snowflake.Node)
-var workerMap = make(map[string]*v2.Worker)
+var workerMap = make(map[string]*pro.Worker)
 
 func RunHttpMode(port int) {
 	r := gin.Default()
@@ -58,7 +58,7 @@ func RunHttpMode(port int) {
 				c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 			}
 		} else {
-			iw, err := v2.NewWorker(uint64(center), uint64(id))
+			iw, err := pro.NewWorker(uint64(center), uint64(id))
 			if err == nil {
 				workerMap[workerKey] = iw
 				if nid, err := value.NextId(); err == nil {

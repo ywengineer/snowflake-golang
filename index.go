@@ -1,4 +1,4 @@
-package main
+package snowflake_golang
 
 import (
 	"fmt"
@@ -12,7 +12,7 @@ import (
 var idWorkerMap = make(map[int]*snowflake.Node)
 var workerMap = make(map[string]*v2.Worker)
 
-func main() {
+func RunHttpMode(port int) {
 	r := gin.Default()
 
 	// Ping test
@@ -72,5 +72,5 @@ func main() {
 		}
 	})
 	// Listen and Server in 0.0.0.0:8182
-	_ = r.Run(":8182")
+	_ = r.Run(fmt.Sprintf(":%d", port))
 }
